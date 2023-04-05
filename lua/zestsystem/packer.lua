@@ -38,8 +38,8 @@ return require("packer").startup(function(use)
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 
-			{ "purescript-contrib/purescript-vim" },
-			{ "FrigoEU/psc-ide-vim" },
+	--	    { "purescript-contrib/purescript-vim" },
+    --	    { "FrigoEU/psc-ide-vim" },
 
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
