@@ -24,6 +24,14 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
+
 	--Debugger
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
