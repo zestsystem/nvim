@@ -62,7 +62,6 @@ return require("packer").startup(function(use)
 			{ "rafamadriz/friendly-snippets" },
 		},
 	})
-	use("sbdchd/neoformat")
 
 	use("github/copilot.vim")
 end)
