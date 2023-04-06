@@ -11,5 +11,6 @@ vim.keymap.set('n', '<leader>vrc', function()
         cwd = '$HOME/.config/nvim',
         hidden = true,
     })
+
 end
 )
