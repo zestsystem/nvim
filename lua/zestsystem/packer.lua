@@ -68,6 +68,9 @@ return require("packer").startup(function(use)
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
 
+            -- Format
+            { "jose-elias-alvarez/null-ls.nvim" },
+
             -- Snippets
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
