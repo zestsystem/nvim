@@ -1,20 +1,5 @@
 local lsp = require("lsp-zero")
 
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-local lsp_format_on_save = function(bufnr)
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format()
-            filter = function(client)
-                return client.name == "null-ls"
-            end
-        end,
-    })
-end
-
 lsp.preset("recommended")
 
 lsp.ensure_installed({
@@ -88,6 +73,17 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+local null_ls = require('null-ls')
+
+null_ls.setup({
+    sources = {
+        -- Replace these with the tools you have installed
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.formatting.stylua,
+    }
+})
 
 vim.diagnostic.config({
     virtual_text = true,
