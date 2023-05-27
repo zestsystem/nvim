@@ -41,17 +41,17 @@ return require("packer").startup(function(use)
             require("trouble").setup({})
         end,
     })
-    use {
+    use({
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("todo-comments").setup {
+            require("todo-comments").setup({
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
-            }
-        end
-    }
+            })
+        end,
+    })
 
     --Debugger
     use("mfussenegger/nvim-dap")
@@ -77,9 +77,13 @@ return require("packer").startup(function(use)
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
+            { "onsails/lspkind-nvim" },
 
             -- Format
             { "jose-elias-alvarez/null-ls.nvim" },
+            {
+                "jay-babu/mason-null-ls.nvim",
+            },
 
             -- Snippets
             { "L3MON4D3/LuaSnip" },
@@ -88,13 +92,13 @@ return require("packer").startup(function(use)
     })
 
     use("github/copilot.vim")
-    use {
-        'Equilibris/nx.nvim',
+    use({
+        "Equilibris/nx.nvim",
         requires = {
-            'nvim-telescope/telescope.nvim',
+            "nvim-telescope/telescope.nvim",
         },
         config = function()
-            require("nx").setup {}
-        end
-    }
+            require("nx").setup({})
+        end,
+    })
 end)
