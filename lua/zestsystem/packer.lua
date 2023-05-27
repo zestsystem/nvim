@@ -25,6 +25,16 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "mrshmllow/document-color.nvim",
+        config = function()
+            require("document-color").setup({
+                -- Default options
+                mode = "background", -- "background" | "foreground" | "single"
+            })
+        end,
+    })
+
+    use({
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
         config = function()
