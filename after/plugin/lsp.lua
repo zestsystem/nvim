@@ -1,6 +1,10 @@
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
+lsp.preset({
+    manage_nvim_cmp = {
+        set_sources = "recommended",
+    },
+})
 
 lsp.ensure_installed({
     "tsserver",
@@ -11,7 +15,8 @@ lsp.ensure_installed({
     "lua_ls",
     "hls",
     "clangd",
-    "purescriptls"
+    "tailwindcss",
+    "purescriptls",
 })
 
 -- Fix Undefined global 'vim'
@@ -29,7 +34,22 @@ lsp.configure("tsserver", {})
 
 lsp.configure("eslint", {})
 
+lsp.configure("tailwindcss", {
+    classAttributes = { "class", "className", "classList", "ngClass" },
+    lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning",
+    },
+    validate = true,
+})
+
 local cmp = require("cmp")
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -48,7 +68,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = true,
+    suggest_lsp_servers = false,
     sign_icons = {
         error = "E",
         warn = "W",
@@ -59,7 +79,6 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
-    lsp_format_on_save(bufnr)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -70,19 +89,27 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
+    if client.server_capabilities.colorProvider then
+        -- Attach document colour support
+        require("document-color").buf_attach(bufnr)
+    end
 end)
 
 lsp.setup()
 
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
 
 null_ls.setup({
     sources = {
-        -- Replace these with the tools you have installed
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.formatting.stylua,
-    }
+        -- Here you can add tools not supported by mason.nvim
+    },
+})
+
+require("mason-null-ls").setup({
+    ensure_installed = nil,
+    automatic_installation = true,
+    handlers = {},
 })
 
 vim.diagnostic.config({
