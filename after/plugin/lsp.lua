@@ -33,7 +33,7 @@ lsp.configure("lua_ls", {
 lsp.configure("tsserver", {
     on_attach = function(client)
         -- disable tsserver formatting if you plan on formatting via null-ls
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end,
 })
 
