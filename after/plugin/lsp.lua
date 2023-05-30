@@ -1,9 +1,8 @@
 local lsp = require("lsp-zero")
+local lspconfig = require("lspconfig")
 
 lsp.preset({
-    manage_nvim_cmp = {
-        set_sources = "recommended",
-    },
+    manage_nvim_cmp = {},
 })
 
 lsp.ensure_installed({
@@ -17,40 +16,6 @@ lsp.ensure_installed({
     "clangd",
     "tailwindcss",
     "purescriptls",
-})
-
--- Fix Undefined global 'vim'
-lsp.configure("lua_ls", {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
-    },
-})
-
-lsp.configure("tsserver", {
-    on_attach = function(client)
-        -- disable tsserver formatting if you plan on formatting via null-ls
-        client.server_capabilities.document_formatting = false
-    end,
-})
-
-lsp.configure("eslint", {})
-
-lsp.configure("tailwindcss", {
-    classAttributes = { "class", "className", "classList", "ngClass" },
-    lint = {
-        cssConflict = "warning",
-        invalidApply = "error",
-        invalidConfigPath = "error",
-        invalidScreen = "error",
-        invalidTailwindDirective = "error",
-        invalidVariant = "error",
-        recommendedVariantOrder = "warning",
-    },
-    validate = true,
 })
 
 local cmp = require("cmp")
@@ -100,6 +65,44 @@ lsp.on_attach(function(client, bufnr)
         require("document-color").buf_attach(bufnr)
     end
 end)
+
+-- Fix Undefined global 'vim'
+lsp.configure("lua_ls", {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+        },
+    },
+})
+
+lsp.configure("tsserver", {
+    on_attach = function(client)
+        -- disable tsserver formatting if you plan on formatting via null-ls
+        client.server_capabilities.document_formatting = false
+    end,
+})
+
+lsp.configure("eslint", {})
+
+lsp.configure("tailwindcss", {
+    settings = {
+        tailwindCSS = {
+            classAttributes = { "class", "className", "classList", "ngClass", ".*Styles*" },
+            lint = {
+                cssConflict = "warning",
+                invalidApply = "error",
+                invalidConfigPath = "error",
+                invalidScreen = "error",
+                invalidTailwindDirective = "error",
+                invalidVariant = "error",
+                recommendedVariantOrder = "warning",
+            },
+            validate = true,
+        },
+    },
+})
 
 lsp.setup()
 
