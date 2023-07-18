@@ -218,4 +218,6 @@ return {
 			end)
 		end,
 	},
+
+	{ import = "zestsystem/plugins/coding/copilot" },
 }
