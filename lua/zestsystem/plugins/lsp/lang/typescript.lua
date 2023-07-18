@@ -110,4 +110,50 @@ return {
 			end
 		end,
 	},
+	{
+		"L3MON4D3/LuaSnip",
+		opts = function()
+			local ls = require("luasnip")
+			local s = ls.snippet
+			local t = ls.text_node
+			local i = ls.insert_node
+
+			ls.add_snippets("typescript", {
+				s("gen$", {
+					t("function* ($)"),
+					t({ "{", "\t" }),
+					i(0),
+					t({ "", "}" }),
+				}),
+				s("egen$", {
+					t("Effect.gen("),
+					t("function* ($)"),
+					t({ "{", "\t" }),
+					i(0),
+					t({ "", "}" }),
+					t(")"),
+				}),
+				s("yield$", {
+					t("yield* $"),
+					t("("),
+					i(0),
+					t(")"),
+				}),
+				s("cyield$", {
+					t("const "),
+					i(1),
+					t(" = "),
+					t("yield* $"),
+					t("("),
+					i(0),
+					t(")"),
+				}),
+				s("epipe", {
+					t({ "pipe(", "\t" }),
+					i(0),
+					t({ "", ")" }),
+				}),
+			})
+		end,
+	},
 }
