@@ -73,6 +73,7 @@ return {
 					},
 				},
 				cssls = {},
+				dockerls = {},
 				html = {},
 				tailwindcss = {
 					root_dir = function(...)
