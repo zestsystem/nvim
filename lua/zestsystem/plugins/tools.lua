@@ -1,4 +1,8 @@
-local mark = require("harpoon.mark")
+return {
+    "ThePrimeagen/harpoon",
+    dependencies = {"nvim-lua/plenary.nvim"},
+    init = function()
+        local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
 vim.keymap.set("n", "<leader><leader>g", mark.add_file)
@@ -16,3 +20,5 @@ end)
 vim.keymap.set("n", "<leader>;", function()
 	ui.nav_file(4)
 end)
+end
+}

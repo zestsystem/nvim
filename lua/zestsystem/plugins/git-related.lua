@@ -1,11 +1,9 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-
-local Zestsystem_Fugitive = vim.api.nvim_create_augroup("Zestsystem_Fugitive", {})
-
-local autocmd = vim.api.nvim_create_autocmd
-autocmd("BufWinEnter", {
-    group = Zestsystem_Fugitive,
-    pattern = "*",
+return {
+    'tpope/vim-fugitive',
+    config = function() 
+        vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+        vim.api.nvim_create_autocmd('BufWinEnter', {
+             pattern = "*",
     callback = function()
         if vim.bo.ft ~= "fugitive" then
             return
@@ -25,6 +23,8 @@ autocmd("BufWinEnter", {
         -- NOTE: It allows me to easily set the branch i am pushing and any tracking
         -- needed if i did not set the branch up correctly
         vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
-    end,
-})
+    end
+        })
 
+    end
+}
