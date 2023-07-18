@@ -299,4 +299,6 @@ return {
 	-- languages
 	{ import = "zestsystem/plugins/lsp/lang/tailwindcss" },
 	{ import = "zestsystem/plugins/lsp/lang/typescript" },
+	{ import = "zestsystem/plugins/lsp/formatting/prettier" },
+	{ import = "zestsystem/plugins/lsp/linting/eslint" },
 }
