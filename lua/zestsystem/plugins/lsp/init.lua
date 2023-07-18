@@ -72,6 +72,11 @@ return {
 						},
 					},
 				},
+				tailwindcss = {
+					root_dir = function(...)
+						return require("lspconfig.util").root_pattern(".git")(...)
+					end,
+				},
 				tsserver = {
 					root_dir = function(...)
 						return require("lspconfig.util").root_pattern(".git")(...)
@@ -289,5 +294,6 @@ return {
 	},
 
 	-- languages
+	{ import = "zestsystem/plugins/lsp/lang/tailwindcss" },
 	{ import = "zestsystem/plugins/lsp/lang/typescript" },
 }
