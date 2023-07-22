@@ -72,44 +72,6 @@ return {
 						},
 					},
 				},
-				cssls = {},
-				dockerls = {},
-				html = {},
-				tailwindcss = {
-					root_dir = function(...)
-						return require("lspconfig.util").root_pattern(".git")(...)
-					end,
-				},
-				tsserver = {
-					root_dir = function(...)
-						return require("lspconfig.util").root_pattern(".git")(...)
-					end,
-					single_file_support = false,
-					settings = {
-						typescript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "literal",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = false,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
-							},
-						},
-						javascript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
-							},
-						},
-					},
-				},
 			},
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig
@@ -297,8 +259,10 @@ return {
 	},
 
 	-- languages
+	{ import = "zestsystem/plugins/lsp/lang/json" },
 	{ import = "zestsystem/plugins/lsp/lang/tailwind" },
 	{ import = "zestsystem/plugins/lsp/lang/typescript" },
+	{ import = "zestsystem/plugins/lsp/lang/terraform" },
 	{ import = "zestsystem/plugins/lsp/formatting/prettier" },
 	{ import = "zestsystem/plugins/lsp/linting/eslint" },
 }
