@@ -19,6 +19,10 @@ return {
 			servers = {
 				---@type lspconfig.options.tsserver
 				tsserver = {
+					root_dir = function(...)
+						return require("lspconfig.util").root_pattern(".git")(...)
+					end,
+					single_file_support = false,
 					keys = {
 						{ "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", desc = "Organize Imports" },
 						{ "<leader>cR", "<cmd>TypescriptRenameFile<CR>", desc = "Rename File" },
@@ -30,12 +34,30 @@ return {
 								convertTabsToSpaces = vim.o.expandtab,
 								tabSize = vim.o.tabstop,
 							},
+							inlayHints = {
+								includeInlayParameterNameHints = "literal",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
 						},
 						javascript = {
 							format = {
 								indentSize = vim.o.shiftwidth,
 								convertTabsToSpaces = vim.o.expandtab,
 								tabSize = vim.o.tabstop,
+							},
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
 							},
 						},
 						completions = {
