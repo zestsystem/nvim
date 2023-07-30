@@ -264,5 +264,7 @@ return {
 	{ import = "zestsystem/plugins/lsp/lang/tailwind" },
 	{ import = "zestsystem/plugins/lsp/lang/typescript" },
 	{ import = "zestsystem/plugins/lsp/lang/terraform" },
+
+	{ import = "zestsystem/plugins/lsp/formatting/prettier" },
 	{ import = "zestsystem/plugins/lsp/linting/eslint" },
 }
