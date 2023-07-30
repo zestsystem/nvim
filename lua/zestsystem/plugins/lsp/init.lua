@@ -260,6 +260,7 @@ return {
 
 	-- languages
 	{ import = "zestsystem/plugins/lsp/lang/json" },
+	{ import = "zestsystem/plugins/lsp/lang/nix" },
 	{ import = "zestsystem/plugins/lsp/lang/tailwind" },
 	{ import = "zestsystem/plugins/lsp/lang/typescript" },
 	{ import = "zestsystem/plugins/lsp/lang/terraform" },
